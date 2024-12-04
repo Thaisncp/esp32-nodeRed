@@ -8,15 +8,14 @@ const char* password = "1106042474001";
 //const char* password = "UNL1859WiFi";
 
 /* Configuración del broker MQTT */
-const char* mqtt_server = "20.205.17.176";  // IP pública de tu VM en Azure
+const char* mqtt_server = "20.205.17.176"; 
 const int mqtt_port = 1883;
-const char* topic_subscribe = "canal2"; // Tema MQTT para suscribirse y recibir comando de LED
+const char* topic_subscribe = "canal2";
 
 /* Inicialización del cliente MQTT */
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-/* Pin del LED */
 const int LED_PIN = 2;
 
 /* Función para conectar al broker MQTT */
@@ -51,12 +50,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   // Verificar si el mensaje pertenece al tema esperado
   if (String(topic) == topic_subscribe) {
-    // Controlar el LED según el valor recibido
     if (message == "encendido") {
-      digitalWrite(LED_PIN, HIGH);  // Encender el LED
+      digitalWrite(LED_PIN, HIGH); 
       Serial.println("LED ENCENDIDO");
     } else if (message == "apagado") {
-      digitalWrite(LED_PIN, LOW);   // Apagar el LED
+      digitalWrite(LED_PIN, LOW); 
       Serial.println("LED APAGADO");
     } else {
       Serial.println("Mensaje no válido para el control del LED.");
@@ -66,8 +64,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 void setup() {
   Serial.begin(115200);
-
-  // Conexión a WiFi
   Serial.println("Conectando a WiFi...");
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -78,16 +74,16 @@ void setup() {
 
   // Configuración del broker MQTT
   client.setServer(mqtt_server, mqtt_port);
-  client.setCallback(callback);  // Establecer la función callback para procesar mensajes
+  client.setCallback(callback);
 
-  // Configuración del pin del LED
+
   pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, LOW);  // Apagar el LED al inicio
+  digitalWrite(LED_PIN, LOW);
 }
 
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
-  client.loop();  // Procesar mensajes MQTT
+  client.loop();
 }
