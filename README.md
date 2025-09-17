@@ -3,7 +3,7 @@
 Este proyecto integra un **ESP32**, el sensor **BME280** y **Node-RED** utilizando el protocolo **MQTT**.  
 Incluye dos programas independientes: uno para la **lectura y envío de datos del sensor** y otro para el **control de un LED desde Node-RED**.  
 
-## 📌 Descripción
+## Descripción
 
 1. **Publicación de datos**  
    El ESP32 recoge la temperatura, humedad y presión atmosférica del sensor BME280 y publica los datos en el tópico `canal1`.  
@@ -13,7 +13,7 @@ Incluye dos programas independientes: uno para la **lectura y envío de datos de
    El ESP32 se suscribe al tópico `canal2`, permitiendo a Node-RED encender o apagar un LED conectado a la placa.  
    Esta funcionalidad permite demostrar el **control remoto de dispositivos** desde el dashboard.  
 
-## 🚀 Ejecución
+## Ejecución
 
 1. Instalar las librerías necesarias en Arduino IDE:  
    - `Adafruit BME280`  
@@ -26,8 +26,6 @@ Incluye dos programas independientes: uno para la **lectura y envío de datos de
    - **`sensor_bme280_mqtt.ino`** → conexión y envío de datos.  
    - **`led_control_mqtt.ino`** → control del LED desde Node-RED.  
 
-4. Importar el flujo de Node-RED incluido en el repositorio para visualizar datos y controlar el LED.  
-
 ## 🖼️ Diagramas y Flujos
 
 - **Esquema en Fritzing**  
@@ -35,11 +33,10 @@ Incluye dos programas independientes: uno para la **lectura y envío de datos de
   ![Circuito en Fritzing](./images/Diseño_Fritzing_Protoboard.png)
 
 - **Dashboard en Node-RED**  
-  ![Flujo Node-RED](./images/Flujo de datos.png)
+  ![Flujo Node-RED](./images/Fludo_node-red.png)
+  ![Dashboard Node-RED](./images/Dashboard_node-red.png)
 
 ## 🎥 Demostración en video
 
 [Ver en Google Drive](https://drive.google.com/file/d/1bVdxrej26ZMnXoOso6rz8y6qk1RVV_0Z/view?usp=sharing)
-
-## 📂 Estructura del repositorio
 
